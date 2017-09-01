@@ -14,19 +14,19 @@
         <ProfileEditor v-bind:profile="profile"/>
       </li>
       <li v-bind:class="{active: currentTab === 1}">
-        <WorkHistoryEditor v-bind:workHistory="workHistory"/>
+        <ArrayEditor v-bind:items="workHistory" v-bind:labels="{company: '公司', content: '工作内容' }" title="工作经历"/>
       </li>
       <li v-bind:class="{active: currentTab === 2}">
-        <h2>学习经历</h2>
+        <ArrayEditor v-bind:items="studyHistory" v-bind:labels="{school: '学校', duration: '时间', degree: '学位'}" title="学习经历"/>
       </li>
       <li v-bind:class="{active: currentTab === 3}">
-        <h2>项目经历</h2>
+        <ArrayEditor v-bind:items="projects" v-bind:labels="{name: '项目名称', duration: '工作内容'}" title="项目经历"/>
       </li>
       <li v-bind:class="{active: currentTab === 4}">
-        <h2>获奖情况</h2>
+        <ArrayEditor v-bind:items="awards" v-bind:labels="{name: '奖励详情'}" title="获奖情况"/>
       </li>
       <li v-bind:class="{active: currentTab === 5}">
-        <h2>联系方式</h2>
+        <ContactsEditor v-bind:contacts="contacts"/>
       </li>
     </ol>
   </div>
@@ -34,21 +34,32 @@
 
 <script>
   import ProfileEditor from './ProfileEditor.vue'
-  import WorkHistoryEditor from './WorkHistoryEditor.vue'
+  import ArrayEditor from './ArrayEditor.vue'
+  import ContactsEditor from './ContactsEditor.vue'
   export default {
-    components: {ProfileEditor, WorkHistoryEditor},
+    components: {ProfileEditor, ArrayEditor, ContactsEditor},
     data() {
       return {
         currentTab: 0,
         icons: ['shenfenzheng', 'work', 'book', 'heart', 'jiangbei', '3-copy'],
         profile: {
-          name: '',
-          city: '',
-          birth: ''
+          name: '', city: '', birth: ''
         },
         workHistory: [
-          {company: '', content: ''},
-        ]
+          {company: '', content: ''}
+        ],
+        studyHistory: [
+          {school: '', duration: '', degree: ''}
+        ],
+        projects: [
+          {name: '', content: ''}
+        ],
+        awards: [
+          {name: ''}
+        ],
+        contacts: {
+          qq: '', wechat: '', email: '', phone: ''
+        }
       }
     },
     methods: {
